@@ -1,6 +1,7 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
 import Toybox.Sensor;
+import Toybox.Time;
 
 class WatchFaceAppView extends WatchUi.View {
 
@@ -25,13 +26,14 @@ class WatchFaceAppView extends WatchUi.View {
     // Update the view
     function onUpdate(dc as Dc) as Void {
         // Call the parent onUpdate function to redraw the layout
-        var time = System.getClockTime();
-        var timeString = Lang.format("$1$:$2$", [time.hour, time.min.format("%02d")]);
-        var secString = Lang.format("$1$", [time.sec.format("%02d")]);
+        var time = Time.Gregorian.info(Time.now(), Time.FORMAT_MEDIUM);
+
         var view = View.findDrawableById("TimeLabel") as Text;
-        view.setText(timeString);
+        view.setText(time.hour + ":" + time.min.format("%02u"));
         view = View.findDrawableById("SecLabel") as Text;
-        view.setText(secString);
+        view.setText(time.sec.format("%02u"));
+        view = View.findDrawableById("DateLabel") as Text;
+        view.setText(time.day + " " + time.month);
 
         view = View.findDrawableById("TempLabel") as Text;
         var temp = Sensor.getInfo().temperature;

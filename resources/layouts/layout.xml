@@ -1,6 +1,7 @@
 <layout id="MainLayout">
     <label x="center" y="30" text="@Strings.prompt" font="Graphics.FONT_LARGE" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" />
     <label id="TimeLabel" x="center" y="center" font="Graphics.FONT_NUMBER_HOT" justification="Graphics.TEXT_JUSTIFY_CENTER" color="Graphics.COLOR_WHITE" />
+    <label id="DateLabel" x="center" y="60" font="Graphics.FONT_SMALL" justification="Graphics.TEXT_JUSTIFY_CENTER" color="Graphics.COLOR_WHITE" />
     <label id="SecLabel" x="200" y="center" font="Graphics.FONT_NUMBER_MILD" justification="Graphics.TEXT_JUSTIFY_CENTER" color="Graphics.COLOR_WHITE" />
     <label id="TempLabel" x="40" y="center" font="Graphics.FONT_TINY" justification="Graphics.TEXT_JUSTIFY_RIGHT" color="Graphics.COLOR_GREEN" />
     <label id="HrLabel" x="center" y="150" font="Graphics.FONT_TINY" justification="Graphics.TEXT_JUSTIFY_CENTER" color="Graphics.COLOR_RED" />
