@@ -2,6 +2,7 @@ import Toybox.Graphics;
 import Toybox.WatchUi;
 import Toybox.Sensor;
 import Toybox.Time;
+import Toybox.ActivityMonitor;
 
 class WatchFaceAppView extends WatchUi.View {
 
@@ -61,6 +62,12 @@ class WatchFaceAppView extends WatchUi.View {
         view = View.findDrawableById("NotificationLabel") as Text;
         var not = System.getDeviceSettings().notificationCount;
         view.setText(not.format("%d"));
+
+        var actInfo = ActivityMonitor.getInfo();
+        view = View.findDrawableById("StepsLabel") as Text;
+        view.setText(actInfo.steps.format("%d"));
+        view = View.findDrawableById("CalLabel") as Text;
+        view.setText(actInfo.calories.format("%d"));
 
         View.onUpdate(dc);
     }
