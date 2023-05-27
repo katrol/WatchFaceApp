@@ -36,8 +36,12 @@ class WatchFaceAppView extends WatchUi.View {
         view = View.findDrawableById("DateLabel") as Text;
         view.setText(time.day + " " + time.month);
 
+        var sensInfo = Sensor.getInfo();
+        view = View.findDrawableById("AltitudeLabel") as Text;
+        view.setText(sensInfo.altitude.format("%f"));
+
+        var temp = sensInfo.temperature;
         view = View.findDrawableById("TempLabel") as Text;
-        var temp = Sensor.getInfo().temperature;
         if (temp != null) {
             view.setText(temp.format("%.1f"));
         }
@@ -46,8 +50,8 @@ class WatchFaceAppView extends WatchUi.View {
         }
         // view.setText(globalTemp.format("%f"));
 
+        var hr = sensInfo.heartRate;
         view = View.findDrawableById("HrLabel") as Text;
-        var hr = Sensor.getInfo().heartRate;
         if (hr != null) {
             view.setText(hr.format("%d"));
         }
@@ -55,13 +59,15 @@ class WatchFaceAppView extends WatchUi.View {
             view.setText("--");
         }
 
-        view = View.findDrawableById("BatteryLabel") as Text;
         var bat = System.getSystemStats().battery;
+        view = View.findDrawableById("BatteryLabel") as Text;
         view.setText(bat.format("%.1f"));
 
+        var devSettings = System.getDeviceSettings();
         view = View.findDrawableById("NotificationLabel") as Text;
-        var not = System.getDeviceSettings().notificationCount;
-        view.setText(not.format("%d"));
+        view.setText(devSettings.notificationCount.format("%d"));
+        view = View.findDrawableById("AlarmLabel") as Text;
+        view.setText(devSettings.alarmCount.format("%d"));
 
         var actInfo = ActivityMonitor.getInfo();
         view = View.findDrawableById("StepsLabel") as Text;
