@@ -11,8 +11,10 @@ class WatchFaceAppMenuDelegate extends WatchUi.MenuInputDelegate {
     function onMenuItem(item as Symbol) as Void {
         if (item == :item_1) {
             System.println("item 1");
+            getApp().setUpdateIncrement(60000);
         } else if (item == :item_2) {
             System.println("item 2");
+            getApp().setUpdateIncrement(1000);
         }
     }
 
