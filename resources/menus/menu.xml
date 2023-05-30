@@ -1,4 +1,4 @@
-<menu id="MainMenu">
-    <menu-item id="item_1" label="@Strings.menu_label_1" />
-    <menu-item id="item_2" label="@Strings.menu_label_2" />
-</menu>
+<menu2 id="PowerMenu" title="@Strings.power_menu_title">
+    <menu-item id="item_minute" label="@Strings.menu_label_minute" />
+    <menu-item id="item_second" label="@Strings.menu_label_second" />
+</menu2>

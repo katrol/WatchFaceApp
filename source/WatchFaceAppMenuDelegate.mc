@@ -2,20 +2,27 @@ import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
 
-class WatchFaceAppMenuDelegate extends WatchUi.MenuInputDelegate {
+class WatchFaceAppMenuDelegate extends WatchUi.Menu2InputDelegate {
 
     function initialize() {
-        MenuInputDelegate.initialize();
+        Menu2InputDelegate.initialize();
     }
 
-    function onMenuItem(item as Symbol) as Void {
-        if (item == :item_1) {
-            System.println("item 1");
-            getApp().setUpdateIncrement(60000);
-        } else if (item == :item_2) {
-            System.println("item 2");
-            getApp().setUpdateIncrement(1000);
+    function onSelect(item) {
+        var increment;
+        switch (item.getId()){
+            case :item_minute:
+                increment = 60000;
+                break;
+            case :item_second:
+            default:
+                increment = 1000;
+                break;
         }
+
+        getApp().setUpdateIncrement(increment);
+
+        WatchUi.popView(WatchUi.SLIDE_RIGHT);
     }
 
 }

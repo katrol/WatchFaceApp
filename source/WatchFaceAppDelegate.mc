@@ -7,8 +7,13 @@ class WatchFaceAppDelegate extends WatchUi.BehaviorDelegate {
         BehaviorDelegate.initialize();
     }
 
+    function onMenu() as Boolean {
+        WatchUi.pushView(new Rez.Menus.PowerMenu(), new WatchFaceAppMenuDelegate(), WatchUi.SLIDE_LEFT);
+        return true;
+    }
+
     function onSelect() as Boolean {
-        WatchUi.pushView(new Rez.Menus.MainMenu(), new WatchFaceAppMenuDelegate(), WatchUi.SLIDE_UP);
+        WatchUi.pushView(new Rez.Menus.PowerMenu(), new WatchFaceAppMenuDelegate(), WatchUi.SLIDE_LEFT);
         return true;
     }
 
