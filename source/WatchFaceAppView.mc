@@ -1,6 +1,7 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
 import Toybox.Sensor;
+import Toybox.SensorHistory;
 import Toybox.Time;
 import Toybox.ActivityMonitor;
 
@@ -38,7 +39,7 @@ class WatchFaceAppView extends WatchUi.View {
 
         var sensInfo = Sensor.getInfo();
         view = View.findDrawableById("AltitudeLabel") as Text;
-        view.setText(sensInfo.altitude.format("%f"));
+        view.setText(sensInfo.altitude.format("%.1f"));
 
         var temp = sensInfo.temperature;
         view = View.findDrawableById("TempLabel") as Text;
@@ -54,6 +55,36 @@ class WatchFaceAppView extends WatchUi.View {
         view = View.findDrawableById("HrLabel") as Text;
         if (hr != null) {
             view.setText(hr.format("%d"));
+        }
+        else {
+            view.setText("--");
+        }
+
+        view = View.findDrawableById("StressLabel") as Text;
+        var stress = SensorHistory.getStressHistory({:period => 1});
+        if (stress != null) {
+            stress = stress.next();
+        }
+        if (stress != null) {
+            stress = stress.data;
+        }
+        if (stress != null) {
+            view.setText(stress.format("%d"));
+        }
+        else {
+            view.setText("--");
+        }
+
+        view = View.findDrawableById("BbLabel") as Text;
+        var bb = SensorHistory.getBodyBatteryHistory({:period => 1});
+        if (bb != null) {
+            bb = bb.next();
+        }
+        if (bb != null) {
+            bb = bb.data;
+        }
+        if (bb != null) {
+            view.setText(bb.format("%d"));
         }
         else {
             view.setText("--");
